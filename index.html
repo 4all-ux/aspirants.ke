@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kilifi Aspirants Hub</title>
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#14282b;--mut:#5b6b6d;--pri:#0b6e75;--onpri:#fff;--soft:#e6f3f3;--acc:#e9b44c;--line:#dfdcd2;--wa:#1fa855;--fb:#1877f2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a1c;--card:#16272a;--ink:#e8f1f1;--mut:#9db2b4;--pri:#4fc3cb;--onpri:#06292c;--soft:#1a3336;--line:#27403f}}
+:root[data-theme="dark"]{--bg:#0e1a1c;--card:#16272a;--ink:#e8f1f1;--mut:#9db2b4;--pri:#4fc3cb;--onpri:#06292c;--soft:#1a3336;--line:#27403f}
+html{scroll-padding-top:150px;scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--pri);color:var(--onpri);padding:20px 16px 56px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px}
+header h1{margin:0 0 4px;font-size:1.6rem;line-height:1.2}
+header p{margin:0;opacity:.9;font-size:.95rem}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.stats span{background:rgba(255,255,255,.18);padding:3px 10px;border-radius:99px;font-size:.8rem}
+.sbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-top:-34px}
+.sbox{position:relative}
+#q{width:100%;padding:14px 16px 14px 44px;font-size:1rem;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);box-shadow:0 4px 14px rgba(0,0,0,.12)}
+#q:focus{outline:2px solid var(--acc);border-color:var(--acc)}
+.sbox i{position:absolute;left:14px;top:12px;font-style:normal;font-size:1.1rem}
+#res{display:none;position:absolute;left:0;right:0;top:54px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.2);max-height:60vh;overflow:auto}
+#res button{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);padding:10px 14px;font:inherit;cursor:pointer}
+#res button small{display:block;color:var(--mut)}
+#res button:hover{background:var(--soft)}
+#res p{margin:0;padding:12px 14px;color:var(--mut)}
+nav.tabs{display:flex;gap:6px;margin:18px 0 10px;overflow-x:auto;padding-bottom:4px}
+.tab,.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 16px;border-radius:99px;font:inherit;font-weight:600;cursor:pointer;white-space:nowrap}
+.tab.on,.chip.on{background:var(--pri);color:var(--onpri);border-color:var(--pri)}
+.chips{display:flex;gap:6px;overflow-x:auto;margin:0 0 12px;padding-bottom:4px}
+.chip{font-weight:500;padding:6px 12px;font-size:.9rem}
+.unit{margin:18px 0}
+.unit h3{margin:0 0 8px;font-size:1.15rem}
+.unit h3 small{display:block;color:var(--mut);font-weight:400;font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.card.open{border-style:dashed}
+.top{display:flex;gap:10px;align-items:center}
+.av{width:44px;height:44px;border-radius:50%;background:var(--soft);color:var(--pri);display:grid;place-items:center;font-weight:700;flex:none}
+.nm b{display:block;line-height:1.2}
+.nm span{color:var(--mut);font-size:.85rem}
+.bt{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.b{display:block;text-align:center;text-decoration:none;font-size:.85rem;font-weight:600;padding:8px 4px;border-radius:9px;color:#fff;background:var(--pri)}
+.b.call{background:#0b6e75}.b.wa{background:var(--wa)}.b.fb{background:var(--fb)}.b.em{background:#b5651d}
+.b.off{background:var(--soft);color:var(--mut);border:1px dashed var(--line)}
+.ac{display:flex;gap:14px}
+.lnk{background:none;border:0;color:var(--pri);font:inherit;font-weight:600;font-size:.9rem;padding:0;cursor:pointer;text-decoration:underline}
+h2{margin:30px 0 10px;font-size:1.25rem}
+.wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.wc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.wc b{display:block;margin-bottom:6px}
+.wc .chip{margin:2px 2px 2px 0;font-size:.8rem;padding:4px 10px}
+footer{margin:34px 0 24px;color:var(--mut);font-size:.85rem}
+dialog{border:0;border-radius:16px;padding:0;max-width:560px;width:calc(100% - 28px);background:var(--card);color:var(--ink);max-height:85vh}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card)}
+.dh b{font-size:1.05rem}
+.x{background:none;border:0;color:var(--ink);font-size:1.4rem;cursor:pointer}
+.db{padding:14px 18px 18px}
+.db ol{padding-left:20px}.db li{margin-bottom:8px}
+.db label{display:block;margin:8px 0 2px;font-size:.85rem;color:var(--mut)}
+.db input{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:var(--bg);color:var(--ink)}
+.go{margin-top:14px;width:100%;padding:12px;border:0;border-radius:10px;background:var(--pri);color:var(--onpri);font:inherit;font-weight:700;cursor:pointer}
+.note{font-size:.8rem;color:var(--mut)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:10px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Kilifi Aspirants Hub</h1>
+<p>One neutral home for every aspirant in Kilifi County. Equal slots, equal space, equal visibility.</p>
+<div class="stats"><span>4 seats</span><span>7 constituencies</span><span>35 wards</span></div>
+</div></header>
+
+<div class="sbar"><div class="wrap"><div class="sbox">
+<i>🔍</i><input id="q" type="search" placeholder="Search aspirant, ward, constituency or seat" autocomplete="off" aria-label="Search">
+<div id="res"></div></div></div></div>
+
+<main class="wrap">
+<nav class="tabs" id="tabs"></nav>
+<div id="chips" class="chips"></div>
+<div id="content"></div>
+<h2>Wards by constituency</h2>
+<div class="wg" id="wards"></div>
+<footer>Aspirants are listed alphabetically within each slot group. Every slot carries the same common manifesto and the same contact buttons. The platform does not endorse any candidate.</footer>
+</main>
+
+<dialog id="dlg"><div class="dh"><b id="dt"></b><button class="x" data-act="close" aria-label="Close">×</button></div><div class="db" id="dbody"></div></dialog>
+<div id="toast"></div>
+
+<script>
+/* ===== CONFIG: edit here ===== */
+const MANIFESTO={
+ title:"Kilifi Common Agenda 2027-2032",
+ intro:"A shared, non-partisan baseline that every aspirant on this hub adopts, applied through the mandate of the office sought. Aspirants may add personal pledges on top. (Draft text for the advisory panel to review.)",
+ pillars:[
+ ["Water and food security","Boreholes, water pans and irrigation; support for cashew, coconut, cassava and fishing value chains."],
+ ["Health for all","A working health facility within reach of every ward, reliable drug supply, ambulances, and maternal and child health."],
+ ["Education and skills","Transparent bursaries, better ECDE and TVET, and digital skills for young people."],
+ ["Youth jobs and enterprise","Business hubs, access to affordable credit and fair access to county and national opportunities."],
+ ["Blue economy and tourism","Cold storage and landing sites for fishers, community-based tourism and protection of our beaches."],
+ ["Land and housing","Faster title deeds, fair resolution of squatter and settlement disputes, and decent affordable housing."],
+ ["Roads, markets and utilities","Passable feeder roads, street lighting, clean markets and reliable power and water."],
+ ["Inclusion","Real participation for women, youth and persons with disabilities; zero tolerance for gender-based violence."],
+ ["Environment and climate","Protect mangroves and forests, tackle coastal erosion and waste, and prepare for drought and floods."],
+ ["Peace, transparency and accountability","Open budgets, public participation, quarterly progress reports and ward-level scorecards."]
+ ]};
+const CONS=[
+ ["Kilifi North",["Tezo","Sokoni","Kibarani","Dabaso","Matsangoni","Watamu","Mnarani"]],
+ ["Kilifi South",["Junju","Mwarakaya","Shimo La Tewa","Chasimba","Mtepeni"]],
+ ["Kaloleni",["Mariakani","Kayafungo","Kaloleni","Mwanamwinga"]],
+ ["Rabai",["Mwawesa","Ruruma","Kambe/Ribe","Rabai/Kisurutini"]],
+ ["Ganze",["Ganze","Bamba","Jaribuni","Sokoke"]],
+ ["Malindi",["Jilore","Kakuyuni","Ganda","Malindi Town","Shella"]],
+ ["Magarini",["Marafa","Magarini","Gongoni","Adu","Garashi","Sabaki"]]
+];
+/* Add real aspirants here. Example:
+ {seat:"MCA",cons:"Kilifi North",ward:"Dabaso",name:"Full Name",party:"Party",phone:"+254700000000",wa:"+254700000000",fb:"https://facebook.com/page",email:"name@example.com"} */
+const ASPIRANTS=[];
+const MIN={"Governor":6,"Woman Rep":6,"MP":4,"MCA":3}; /* minimum slots per group */
+/* ===== END CONFIG ===== */
+
+const SEATS=["Governor","Woman Rep","MP","MCA"];
+const W2C={};CONS.forEach(([c,ws])=>ws.forEach(w=>W2C[w]=c));
+const st={seat:"Governor",cons:CONS[0][0]};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-");
+const digits=s=>String(s||"").replace(/\D/g,"");
+let pend=null,tt;
+
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200);return false}
+
+function btns(a){
+ const fb=a&&a.fb?(/^https?:/.test(a.fb)?a.fb:"https://facebook.com/"+a.fb.replace(/^\//,"")):"";
+ const L=[["call","📞","Call",a&&a.phone?"tel:"+a.phone.replace(/\s/g,""):""],
+  ["wa","💬","WhatsApp",a&&a.wa?"https://wa.me/"+digits(a.wa):""],
+  ["fb","f","Facebook",fb],
+  ["em","✉","Email",a&&a.email?"mailto:"+a.email:""]];
+ return L.map(([c,i,t,h])=>h
+  ?`<a class="b ${c}" href="${esc(h)}"${/^http/.test(h)?' target="_blank" rel="noopener"':""}>${i} ${t}</a>`
+  :`<a class="b off" href="#" onclick="return toast('No ${t} added yet')">${i} ${t}</a>`).join("");
+}
+function card(a){
+ const o=!a;
+ const ini=o?"+":esc(a.name.split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase());
+ return `<article class="card${o?" open":""}"><div class="top"><div class="av">${ini}</div><div class="nm"><b>${o?"Open slot":esc(a.name)}</b><span>${o?"Available for an aspirant":esc(a.party||"Independent")}</span></div></div><div class="bt">${btns(a)}</div><div class="ac"><button class="lnk" data-act="man" data-name="${o?"":esc(a.name)}">Manifesto</button>${o?'<button class="lnk" data-act="claim">Add aspirant</button>':""}</div></article>`;
+}
+function unit(title,sub,seat,cons,ward){
+ const arr=ASPIRANTS.filter(a=>a.seat===seat&&(!cons||a.cons===cons)&&(!ward||a.ward===ward)).sort((x,y)=>x.name.localeCompare(y.name));
+ const n=Math.max(MIN[seat],arr.length+1);let h="";
+ for(let i=0;i<n;i++)h+=card(arr[i]);
+ return `<section class="unit" id="u-${slug(seat)}-${slug(ward||cons||"county")}" data-seat="${seat}" data-cons="${esc(cons||"")}" data-ward="${esc(ward||"")}"><h3>${esc(title)}<small>${esc(sub)}</small></h3><div class="grid">${h}</div></section>`;
+}
+function render(){
+ $("#tabs").innerHTML=SEATS.map(s=>`<button class="tab${s===st.seat?" on":""}" data-act="seat" data-v="${s}">${s==="Woman Rep"?"Woman Rep":s}</button>`).join("");
+ const needC=st.seat==="MP"||st.seat==="MCA";
+ $("#chips").style.display=needC?"flex":"none";
+ $("#chips").innerHTML=needC?CONS.map(([c])=>`<button class="chip${c===st.cons?" on":""}" data-act="cons" data-v="${esc(c)}">${esc(c)}</button>`).join(""):"";
+ let h="";
+ if(st.seat==="Governor")h=unit("Governor","County-wide seat · Kilifi County","Governor");
+ else if(st.seat==="Woman Rep")h=unit("Woman Representative","County-wide seat · Kilifi County","Woman Rep");
+ else if(st.seat==="MP")h=unit("Member of Parliament · "+st.cons,"Constituency seat","MP",st.cons);
+ else{const ws=CONS.find(c=>c[0]===st.cons)[1];h=ws.map(w=>unit("MCA · "+w+" Ward",st.cons+" Constituency","MCA",st.cons,w)).join("")}
+ $("#content").innerHTML=h;
+}
+$("#wards").innerHTML=CONS.map(([c,ws])=>`<div class="wc"><b>${esc(c)} <small style="font-weight:400;color:var(--mut)">(${ws.length} wards)</small></b>${ws.map(w=>`<button class="chip" data-act="ward" data-c="${esc(c)}" data-v="${esc(w)}">${esc(w)}</button>`).join("")}</div>`).join("");
+
+function go(seat,cons,ward){
+ st.seat=seat;if(cons)st.cons=cons;render();
+ const id=ward?"u-mca-"+slug(ward):"content";
+ const el=document.getElementById(id)||$("#content");
+ el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function openD(title,html){$("#dt").textContent=title;$("#dbody").innerHTML=html;$("#dlg").showModal()}
+function manifesto(name){
+ openD(name?"Manifesto · "+name:"Common manifesto",`<p><b>${esc(MANIFESTO.title)}</b></p><p class="note">${esc(MANIFESTO.intro)}</p><ol>${MANIFESTO.pillars.map(p=>`<li><b>${esc(p[0])}.</b> ${esc(p[1])}</li>`).join("")}</ol>`);
+}
+function claim(sec){
+ pend={seat:sec.dataset.seat,cons:sec.dataset.cons,ward:sec.dataset.ward};
+ const f=(id,l,t)=>`<label for="${id}">${l}</label><input id="${id}" type="${t||"text"}">`;
+ openD("Add aspirant",f("f-name","Full name")+f("f-party","Party or independent")+f("f-phone","Phone (e.g. +254700000000)","tel")+f("f-wa","WhatsApp number","tel")+f("f-fb","Facebook page link")+f("f-em","Email","email")+`<button class="go" data-act="save">Add to this slot</button><p class="note">Preview only: it is kept for this visit. To make a profile permanent, add it to the ASPIRANTS list in the site file. The common manifesto is attached automatically.</p>`);
+}
+function save(){
+ const v=id=>$("#"+id).value.trim();
+ if(!v("f-name"))return toast("Enter a name");
+ ASPIRANTS.push({...pend,name:v("f-name"),party:v("f-party"),phone:v("f-phone"),wa:v("f-wa"),fb:v("f-fb"),email:v("f-em")});
+ $("#dlg").close();render();toast("Aspirant added");
+}
+
+/* search */
+function idx(){
+ const r=[];
+ SEATS.forEach(s=>r.push({l:s==="Woman Rep"?"Woman Representative":s,s:"Seat",g:[s]}));
+ CONS.forEach(([c,ws])=>{r.push({l:c,s:"Constituency · MP seat and "+ws.length+" wards",g:["MP",c]});ws.forEach(w=>r.push({l:w,s:"Ward · "+c+" · MCA seat",g:["MCA",c,w]}))});
+ ASPIRANTS.forEach(a=>r.push({l:a.name,s:a.seat+" · "+(a.ward||a.cons||"Kilifi County")+(a.party?" · "+a.party:""),g:[a.seat,a.cons||W2C[a.ward],a.ward]}));
+ return r;
+}
+const q=$("#q"),res=$("#res");
+q.addEventListener("input",()=>{
+ const v=q.value.trim().toLowerCase();
+ if(!v){res.style.display="none";return}
+ const m=idx().filter(e=>(e.l+" "+e.s).toLowerCase().includes(v)).slice(0,8);
+ res.innerHTML=m.length?m.map((e,i)=>`<button data-act="hit" data-i="${i}"><b>${esc(e.l)}</b><small>${esc(e.s)}</small></button>`).join(""):"<p>No match yet. Try a ward, constituency or name.</p>";
+ res._m=m;res.style.display="block";
+});
+document.addEventListener("click",e=>{
+ const t=e.target.closest("[data-act]");
+ if(!t){if(!e.target.closest(".sbox"))res.style.display="none";return}
+ const a=t.dataset.act;
+ if(a==="seat"){st.seat=t.dataset.v;render()}
+ else if(a==="cons"){st.cons=t.dataset.v;render()}
+ else if(a==="ward")go("MCA",t.dataset.c,t.dataset.v);
+ else if(a==="man")manifesto(t.dataset.name);
+ else if(a==="claim")claim(t.closest(".unit"));
+ else if(a==="save")save();
+ else if(a==="close")$("#dlg").close();
+ else if(a==="hit"){const g=res._m[+t.dataset.i].g;res.style.display="none";q.value="";go(g[0],g[1],g[2])}
+});
+render();
+</script>
+</body>
+</html>
