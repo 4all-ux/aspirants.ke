@@ -73,7 +73,7 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
 <header><div class="wrap">
 <h1>Kilifi Aspirants Hub</h1>
 <p>One neutral home for every aspirant in Kilifi County. Equal slots, equal space, equal visibility.</p>
-<div class="stats"><span>4 seats</span><span>7 constituencies</span><span>35 wards</span></div>
+<div class="stats"><span>5 seats</span><span>7 constituencies</span><span>35 wards</span></div>
 </div></header>
 
 <div class="sbar"><div class="wrap"><div class="sbox">
@@ -121,10 +121,10 @@ const CONS=[
 /* Add real aspirants here. Example:
  {seat:"MCA",cons:"Kilifi North",ward:"Dabaso",name:"Full Name",party:"Party",phone:"+254700000000",wa:"+254700000000",fb:"https://facebook.com/page",email:"name@example.com"} */
 const ASPIRANTS=[];
-const MIN={"Governor":6,"Woman Rep":6,"MP":4,"MCA":3}; /* minimum slots per group */
+const MIN={"Governor":6,"Senetor":4,"Woman Rep":6,"MP":4,"MCA":3}; /* minimum slots per group */
 /* ===== END CONFIG ===== */
 
-const SEATS=["Governor","Woman Rep","MP","MCA"];
+const SEATS=["Governor","Senetor","Woman Rep","MP","MCA"];
 const W2C={};CONS.forEach(([c,ws])=>ws.forEach(w=>W2C[w]=c));
 const st={seat:"Governor",cons:CONS[0][0]};
 const $=s=>document.querySelector(s);
